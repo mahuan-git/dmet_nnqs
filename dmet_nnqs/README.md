@@ -4,11 +4,7 @@
 git clone the code and add the directory to PYTHONPATH
 
 ## NeuralNetworkQuantumState
-unzip the given nnqs.tar.gz file 
-```shell 
-tar -zxvf nnqs.tar.gz
-```
-then follow the README.md file in the nnqs code. Here we offer a brief version.
+follow the README.md file in the nnqs code. Here we offer a brief version.
 ### needed python lib:
 - python >= 3.8
     - numpy==1.23.5
@@ -33,9 +29,8 @@ export LD_LIBRARY_PATH=$NNQS_PATH/local_energy/:$LD_LIBRARY_PATH
 
 ### dmet_nnqs
 As the libdmet package and the NeuralNetworkQuantumState package is installed, the dmet_nnqs code does not require other packages.\
-The dmet_nnqs package can be installed simply by unzip the file and add to PTHONPATH 
+The dmet_nnqs package can be installed simply by add path to PTHONPATH 
 ```shell
-tar -zxvf dmet_nnqs.tar.gz
 export PYTHONPATH=/path/t0/dmet_nnqs/$PYTHONPATH
 ```
 
