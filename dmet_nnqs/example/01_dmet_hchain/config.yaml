@@ -1,0 +1,104 @@
+# torch device
+#device: 'cpu'
+device: 'cuda'
+# local energy calculation device
+#local_energy_version: "CPP_CPU"
+local_energy_version: "CPP_GPU"
+#local_energy_version: "JL_CPU"
+
+#n_samples: 1000000000000
+n_samples: 12288000
+n_epoches: 100000
+save_model: 0 
+save_per_epoches: 1000
+load_model: 0
+checkpoint_path: "checkpoints/li2o-nomask-iter1000-rank0.pt"
+
+# 0->extract ham; 1->load ham; 2->save ham;
+do_ham: 0
+
+#model_fp: fp64
+model_fp: fp32
+
+transfer_learning: true
+#transfer_learning: false
+seed: 333
+pos_independ: false
+use_sr: false
+use_clip_grad: false
+#psi_type: 'real'
+psi_type: 'complex'
+only_infer: false
+search_init_best_seed: false
+weak_scaling: false
+
+# Open parallel of software
+#use_uniq_sampling_parallel: true
+use_uniq_sampling_parallel: false
+incr_per_epoch: 50
+min_partition_samples: 64
+#partition_algo: 'weight'
+partition_algo: 'number'
+
+# if > 0, using max input dimension for phase
+max_transfer: 0
+#max_transfer: 128
+
+use_samples_recursive: true
+n_samples_min: 1e12
+n_samples_max: 1e14
+n_unq_samples_min: 1e3
+n_unq_samples_max: 1e6
+n_samples_scale_factor: 1.3
+
+sampling_algo: "bfs"
+#sampling_algo: "dfs"
+sampling_dfs_width: 128
+sampling_dfs_uniq_samples_min: 2048
+
+drop_samples: false
+drop_samples_eps: 1e-8
+
+use_amp_infer_batch: true
+amp_infer_batch_size: 8192
+
+use_kv_cache: false
+use_grad_accumulation: false
+grad_accumulation_width: 40960
+#grad_accumulation_width: 8192
+
+# "none"/"restricted"/"unrestricted"
+electron_conservation_type: "restricted"
+qubit_order: -1
+#qubit_order: 0
+log_level: 'INFO'
+#log_level: 'DEBUG'
+log_step: 20
+system: SYSTEM
+n_elecs: NELEC
+# default will be n_elecs/2
+n_alpha_electrons: NELEC_A # spin-up elec
+n_beta_electrons: NELEC_B # spin-down elec
+elec_cons_method: 0
+std_dev_tol: 2e-6
+result_filter_size: 40
+model:
+    d_model: 32
+    n_layers: 4
+    n_heads: 4
+    p_dropout: 0.0
+
+#use_phase_embedding: true
+use_phase_embedding: false
+
+optim:
+    name: 'AdamW'
+      #lr: 0.0005
+    lr: 1.0
+    betas: [0.9, 0.99]
+    eps: 1e-9
+    weight_decay: 0.001
+    open_lr_scheduler: true
+    #open_lr_scheduler: false
+    warmup_step: 4000
+    #warmup_step: 10000
