@@ -4,11 +4,7 @@
 git clone the code and add the directory to PYTHONPATH
 
 ## NeuralNetworkQuantumState
-unzip the given nnqs.tar.gz file 
-```shell 
-tar -zxvf nnqs.tar.gz
-```
-then follow the README.md file in the nnqs code. Here we offer a brief version.
+follow the README.md file in the nnqs code. Here we offer a brief version.
 ### needed python lib:
 - python >= 3.8
     - numpy==1.23.5
