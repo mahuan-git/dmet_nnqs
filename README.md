@@ -29,9 +29,8 @@ export LD_LIBRARY_PATH=$NNQS_PATH/local_energy/:$LD_LIBRARY_PATH
 
 ### dmet_nnqs
 As the libdmet package and the NeuralNetworkQuantumState package is installed, the dmet_nnqs code does not require other packages.\
-The dmet_nnqs package can be installed simply by unzip the file and add to PTHONPATH 
+The dmet_nnqs package can be installed simply by add to PTHONPATH 
 ```shell
-tar -zxvf dmet_nnqs.tar.gz
 export PYTHONPATH=/path/t0/dmet_nnqs/$PYTHONPATH
 ```
 
