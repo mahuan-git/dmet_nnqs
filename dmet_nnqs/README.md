@@ -243,7 +243,7 @@ else:
     config.update_dict(config.strong_cfg)
 nnqs_solver = NNQS(config = config,mol_name = mol_name,frag_idx = frag_idx ,restricted=restricted,calc_rdm2=False)
 ```
-define different QiankunNet solver for different iterations and different fragments.\
+define different QiankunNet solver configs for different iterations and different fragments.\
  \
  \
 Some important setting for DMET convergence:
