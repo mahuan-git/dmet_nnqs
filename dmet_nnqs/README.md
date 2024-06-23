@@ -15,11 +15,20 @@ follow the README.md file in the nnqs code. Here we offer a brief version.
     - torch==1.13.1+cu116
 
 ### how to run nnqs
+compile from source code:\
+cpu version:\
+```shell
+make cpu
+```
+gpu version:\
 first go to local_energy folder, and modify the Makefile based on your system. Modify CUDA_ROOT and CUDA_GENCODE may also be modified.\
 Then make with
 ```shell
 make gpu
 ```
+In the given nnqs code, we do not offer source code of the GPU version local energy calculation. But a compile cpu lib is given. So in the config file should use following settings:\
+device: 'cpu'\
+local_energy_version: "CPP_CPU"
 and add path to PATHs
 ```shell
 NNQS_PATH=/path/to/NeuralNetworkQuantumState
