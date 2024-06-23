@@ -195,10 +195,8 @@ optim:
 ```
 If train a Neural Network from scratch, set lr a large value and open_le_scheduler = true. If load a well trained model, set lr a small value.\
  \
-Next we introduce how to define a transfer learning strategy:
+Next we introduce how to define a transfer learning strategy. A transfer learning strategy generally involve loading models as initial model in the DMET iteration. Based on whether the model loaded is a good model, use different settings to make the algorithm more effective. Define strong_cfg and weak_cfg:
 ```python
-
-
 strong_cfg ={
             'load_model': 1,
             'log_step' : 1,
@@ -224,6 +222,37 @@ weak_cfg ={
                 'open_lr_scheduler': True,
                 'warmup_step': 100}
             }
+```
+If the model loaded is considered a very good initial model, use strong_cfg by :
+```python
+config = MyConfig(config_file,strong_cfg = strong_cfg,weak_cfg = weak_cfg)
+config.update_dict(config.strong_cfg)
+```
+If the model loaded is not that good, use weak cfg instead:
+```python
+config.update_dict(config.weak_cfg)
+```
+A transfer learning strategy can be defined as:
+```python
+if iter ==0:
+    config.load_model = 0
+else:
+    load_checkpoint_file = "checkpoints/HChain_1.00_0-0-converge.pt"
+    config.load_model = 1
+    config.checkpoint_path = load_checkpoint_file
+    config.update_dict(config.strong_cfg)
+nnqs_solver = NNQS(config = config,mol_name = mol_name,frag_idx = frag_idx ,restricted=restricted,calc_rdm2=False)
+```
+define different QiankunNet solver for different iterations and different fragments.\
+ \
+ \
+Some important setting for DMET convergence:
+```pyhton
+    nelec_tol = 1e-5 # convergence tolerace for electron conservation, 1e-5 is generally a good value. Adjust depends on the size of the system 
+    MaxIter = 20    # max number of DMET itarations
+    u_tol = 1.0e-4  #  Adjust depends on the size of the system 
+    E_tol = 1.0e-5  #  Adjust depends on the size of the system 
+    iter_tol = 4  # min munber of DMET iterations
 ```
 
 
