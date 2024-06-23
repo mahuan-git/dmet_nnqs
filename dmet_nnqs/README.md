@@ -26,7 +26,7 @@ Then make with
 ```shell
 make gpu
 ```
-In the given nnqs code, we do not offer source code of the GPU version local energy calculation. But a compile cpu lib is given. So in the config file should use following settings:\
+In the given nnqs code, we do not offer source code of the GPU version local energy calculation. But a compiled cpu lib is given. So in the config file should use following settings:\
 device: 'cpu'\
 local_energy_version: "CPP_CPU"\
 Add path to PATHs:
