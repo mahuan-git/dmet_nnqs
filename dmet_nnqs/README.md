@@ -129,7 +129,7 @@ qubit_order: -1
 #qubit_order: 0
 log_level: 'INFO'
 #log_level: 'DEBUG'
-log_step: 20
+log_step: 10
 system: SYSTEM
 n_elecs: NELEC
 # default will be n_elecs/2
@@ -139,7 +139,7 @@ elec_cons_method: 0
 std_dev_tol: 2e-6
 result_filter_size: 100
 model:
-    d_model: 64
+    d_model: 32
     n_layers: 4
     n_heads: 4
     p_dropout: 0.0
@@ -160,3 +160,15 @@ optim:
     #warmup_step: 10000
 
 ```
+Some inportant setting that may be crucial for QiankunNet convergence:
+```yaml
+load_model: 0   # 0 for not load model and train from scratch. 1 for load existing model.
+checkpoint_path: "checkpoints/li2o-nomask-iter1000-rank0.pt"  # path of the model to load.
+n_samples_min: 1e14  # minimum number of samples, if 
+n_samples_max: 1e16  # maximum number of samples,
+```
+```yaml
+std_dev_tol: 2e-6
+result_filter_size: 100
+```
+These two setting defines the convergence criteria of the QiankunNet solver. The QiankunNet solver will restore last N results in a list (N is controled by the result_filter_size tag), and calculate the standard deviation in the result list. If the standard deviation is smaller than a given tolerance (controled by std_dev_tol tag), the QiankunNet solver gives the result with lowest energy in the result list.
