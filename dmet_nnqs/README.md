@@ -192,7 +192,37 @@ optim:
     #open_lr_scheduler: false
     warmup_step: 4000
 ```
-If train a Neural Network from scratch, set lr a large value and open_le_scheduler = true. If load a well trained model, set lr a small value.
+If train a Neural Network from scratch, set lr a large value and open_le_scheduler = true. If load a well trained model, set lr a small value.\
+ \
+Next we introduce how to define a transfer learning strategy:
+```python
 
+
+strong_cfg ={
+            'load_model': 1,
+            'log_step' : 1,
+            'std_dev_tol': 2e-6,
+            'result_filter_size' : 100,
+            'optim': {'name': 'AdamW',
+                'lr': 1e-5,
+                'betas': [0.9, 0.99],
+                'eps': '1e-9',
+                'weight_decay': 0.0,
+                'open_lr_scheduler': False,
+                'warmup_step': 100}
+weak_cfg ={
+            'load_model': 1,
+            'log_step' : 5,
+            'std_dev_tol': 2e-6,
+            'result_filter_size' : 100,
+            'optim': {'name': 'AdamW',
+                'lr': 1e-2,
+                'betas': [0.9, 0.99],
+                'eps': '1e-9',
+                'weight_decay': 0.001,
+                'open_lr_scheduler': True,
+                'warmup_step': 100}
+            }
+```
 
 
