@@ -162,6 +162,16 @@ optim:
 ```
 Some inportant setting that may be crucial for QiankunNet convergence:
 ```yaml
+device: 'cuda'
+local_energy_version: "CPP_GPU"
+```
+select hardware to calculate local energy and the corresponding code to calculate local energy. 
+In this code we offer a cpu version compiled library, so following setting should be used:
+```yaml
+device: 'cpu'
+local_energy_version: "CPP_CPU"
+```
+```yaml
 load_model: 0   # 0 for not load model and train from scratch. 1 for load existing model.
 checkpoint_path: "checkpoints/li2o-nomask-iter1000-rank0.pt"  # path of the model to load.
 n_samples_min: 1e14  # minimum number of samples, if encounter a CUDA OUT of Memory error, can try make n_sample_min smaller.
