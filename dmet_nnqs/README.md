@@ -28,8 +28,9 @@ make gpu
 ```
 In the given nnqs code, we do not offer source code of the GPU version local energy calculation. But a compile cpu lib is given. So in the config file should use following settings:\
 device: 'cpu'\
-local_energy_version: "CPP_CPU"
-and add path to PATHs
+local_energy_version: "CPP_CPU"\
+
+add path to PATHs
 ```shell
 NNQS_PATH=/path/to/NeuralNetworkQuantumState
 export PYTHONPATH=$NNQS_PATH:$NNQS_PATH/local_energy/:$PYTHONPATH
