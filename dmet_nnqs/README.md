@@ -44,7 +44,10 @@ export PYTHONPATH=/path/t0/dmet_nnqs/$PYTHONPATH
 ```
 
 ### inportant settings
+To define a QiankunNet solver for dmet_nnqs method can be done as following 
 ```Python
 from dmet_nnqs.nnqs import NNQS
 from dmet_nnqs.config import MyConfig
+config = MyConfig("config.yaml")
+solver = NNQS(config = config,mol_name = mol_name,frag_idx = I ,restricted=restricted,calc_rdm2=False)
 ```
