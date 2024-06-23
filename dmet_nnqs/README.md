@@ -101,8 +101,8 @@ max_transfer: 0
 #max_transfer: 128
 
 use_samples_recursive: true
-n_samples_min: 1e14
-n_samples_max: 1e16
+n_samples_min: 1e8
+n_samples_max: 1e12
 n_unq_samples_min: 1e3
 n_unq_samples_max: 1e6
 n_samples_scale_factor: 1.3
@@ -164,11 +164,35 @@ Some inportant setting that may be crucial for QiankunNet convergence:
 ```yaml
 load_model: 0   # 0 for not load model and train from scratch. 1 for load existing model.
 checkpoint_path: "checkpoints/li2o-nomask-iter1000-rank0.pt"  # path of the model to load.
-n_samples_min: 1e14  # minimum number of samples, if 
-n_samples_max: 1e16  # maximum number of samples,
+n_samples_min: 1e14  # minimum number of samples, if encounter a CUDA OUT of Memory error, can try make n_sample_min smaller.
+n_samples_max: 1e16  # maximum number of samples.
 ```
 ```yaml
 std_dev_tol: 2e-6
 result_filter_size: 100
 ```
-These two setting defines the convergence criteria of the QiankunNet solver. The QiankunNet solver will restore last N results in a list (N is controled by the result_filter_size tag), and calculate the standard deviation in the result list. If the standard deviation is smaller than a given tolerance (controled by std_dev_tol tag), the QiankunNet solver gives the result with lowest energy in the result list.
+These two setting defines the convergence criteria of the QiankunNet solver. The QiankunNet solver will restore last N results in a list (N is controled by the result_filter_size tag), and calculate the standard deviation in the result list. If the standard deviation is smaller than a given tolerance (controled by std_dev_tol tag), the QiankunNet solver gives the result with lowest energy in the result list. Increase result_filter_size would increase stability of the QiankunNet solver while taking more time.
+```yaml
+model:
+    d_model: 32
+    n_layers: 4
+    n_heads: 4
+    p_dropout: 0.0
+```
+Defines the neural network used by QiankunNet solver. If you found the expressibility of the neural network is not enough, increase d_model and n_layers to increase expressibility.
+```yaml
+optim:
+    name: 'AdamW'
+      #lr: 1e-5
+    lr: 1.0   # learning rate 
+    betas: [0.9, 0.99]
+    eps: 1e-9
+    weight_decay: 0.001
+    open_lr_scheduler: true   # If true, the learning rate would be scheduled, the learning rate will first increase, then decrease to a smaller value gradually.
+    #open_lr_scheduler: false
+    warmup_step: 4000
+```
+If train a Neural Network from scratch, set lr a large value and open_le_scheduler = true. If load a well trained model, set lr a small value.
+
+
+
