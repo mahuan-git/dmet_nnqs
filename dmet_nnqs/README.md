@@ -43,3 +43,8 @@ The dmet_nnqs package can be installed simply by add path to PTHONPATH
 export PYTHONPATH=/path/t0/dmet_nnqs/$PYTHONPATH
 ```
 
+### inportant settings
+```Python
+from dmet_nnqs.nnqs import NNQS
+from dmet_nnqs.config import MyConfig
+```
