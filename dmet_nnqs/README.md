@@ -49,7 +49,7 @@ To define a QiankunNet solver for dmet_nnqs method can be done as following
 from dmet_nnqs.nnqs import NNQS
 from dmet_nnqs.config import MyConfig
 config = MyConfig("config.yaml")
-solver = NNQS(config = config,mol_name = mol_name,frag_idx = I ,restricted=restricted,calc_rdm2=False)
+solver = NNQS(config = config,mol_name = mol_name,frag_idx = I ,restricted=restricted)
 ```
 where config.yaml is a yaml file which contain settings for QiankunNet solver.\
 The config.yaml file should look like this:
