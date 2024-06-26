@@ -174,8 +174,8 @@ local_energy_version: "CPP_CPU"
 ```yaml
 load_model: 0   # 0 for not load model and train from scratch. 1 for load existing model.
 checkpoint_path: "checkpoints/li2o-nomask-iter1000-rank0.pt"  # path of the model to load.
-n_samples_min: 1e14  # minimum number of samples, if encounter a CUDA OUT of Memory error, can try make n_sample_min smaller.
-n_samples_max: 1e16  # maximum number of samples.
+n_samples_min: 1e8  # minimum number of samples, if encounter a CUDA OUT of Memory error, can try make n_sample_min smaller.
+n_samples_max: 1e12  # maximum number of samples.
 log_step: 10   # every n steps record a QiankunNet energy.
 ```
 ```yaml
